@@ -6,8 +6,4 @@ this script does subdomain enumeration and validate and returns the status code.
 
 ADD feat:
 	intregrate with amass, sublist3r and findomain
-	make a python script that: 
-		handles the output and organize directory and analyze the data by status code
-		after the script run, put all the subdomains together in an additional txt file.
-	technology fingerprint
 	

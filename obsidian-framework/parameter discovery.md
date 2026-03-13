@@ -12,13 +12,6 @@ param miner:
 
 obs: the flag -t add processor threads, so this tool can work fastly
 
-
-
-
-
-
-
-
 				---filters---
 —gf—(works like a grep with vulnerabilities patters, such as xss, sqli)
 
