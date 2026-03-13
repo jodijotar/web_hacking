@@ -1,1 +1,1 @@
-<img src="assets/graph_view.png>">
+<img src="assets/graph_view.png">
