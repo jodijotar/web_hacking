@@ -4,17 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "c27cd33f0f1c4d07",
+        "id": "3ac7244447ea2357",
         "type": "tabs",
         "children": [
           {
-            "id": "20e3981e1cd184c1",
+            "id": "e182526230d1c878",
             "type": "leaf",
             "state": {
-              "type": "graph",
+              "type": "empty",
               "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
+              "icon": "lucide-file",
+              "title": "New tab"
             }
           }
         ]
@@ -74,8 +74,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "67c90b24be8786ed",
@@ -180,24 +179,25 @@
       "bases:Create new base": false
     }
   },
-  "active": "20e3981e1cd184c1",
+  "active": "71eef673e6c6c5b7",
   "lastOpenFiles": [
-    "ASN.md",
-    "automated reconnaissance.md",
+    "test.md",
+    "manual recon and osint.md",
     "bash script - website enumeration.md",
-    "noisy port scanning.md",
+    "google dorking.md",
+    "assesment directory structure.md",
+    "automated reconnaissance.md",
     "invisible port scanning.md",
+    "noisy port scanning.md",
     "cloud recon and monitoring.md",
-    "github recon.md",
-    "directories and files enumeration.md",
+    "ASN.md",
     "api fuzzing.md",
     "parameter discovery.md",
-    "js directory and new urls enumeration.md",
-    "manual recon and osint.md",
+    "directories and files enumeration.md",
     "historical endpoints.md",
+    "github recon.md",
     "subdomain enumeration.md",
     "Hunting Workflow.md",
-    "google dorking.md",
-    "assesment directory structure.md"
+    "js directory and new urls enumeration.md"
   ]
 }

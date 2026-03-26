@@ -23,4 +23,3 @@
         SpiderFootHX
         Netlas.io
     BBOT
-	Kara v2 - automated shodan

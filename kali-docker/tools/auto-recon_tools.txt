@@ -1,0 +1,42 @@
+subfinder
+	api_chaos
+	api_git
+	api_shodan
+	api_facebookCT
+	api_securitytrails
+amass
+sublist3r
+findomain
+securitytrails
+BBOT - bighuge bls osint tool
+httpx
+gau
+dirsearch
+fuff
+anti-burl
+anew
+linkfinder
+arjun
+gf
+unfurl
+metabigor
+hakrevdns
+prips
+altdns
+rpgen
+dnsgen
+massdns
+pure dns
+dnsx
+naabu
+nmap
+rustcan
+asnmap
+	api_project_discovery
+smap
+censys
+project sonar
+
+
+
+
