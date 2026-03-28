@@ -9,5 +9,5 @@ docker run --network host \
 ```
 
 ```sh
-  apt update && apt -y install kali-linux-headless
+apt update && apt -y install kali-linux-headless
 ```
