@@ -2,9 +2,12 @@
 
 ## kali linux docker cli first use:
 ```sh
-  docker run --mount type=bind,src=/<host-path>/kali-workspace,dst=/kali-workspace --tty --interactive --name kali-jeyjey kalilinux/kali-rolling
+docker run --network host \
+  --mount type=bind,src=/<host-path>/kali-workspace,dst=/kali-workspace \
+  --tty --interactive --name kali-jeyjey \
+  kalilinux/kali-rolling
 ```
 
 ```sh
-  apt update && apt -y install kali-linux-headless
+apt update && apt -y install kali-linux-headless
 ```
