@@ -1,7 +1,15 @@
-fuzz everything (endpoints, parameters, directories, etc) and use context-adapted word lists instead of generic list(https://wordlists.assetnote.io)
+wordlists
+	fuzz everything (endpoints, parameters, directories, etc) and use context-adapted word lists instead of generic list(https://wordlists.assetnote.io)
+	https://github.com/danielmiessler/SecLists  kali linux - apt install seclists
+	https://github.com/assetnote/commonspeak2
 
---fuzzing tools: dirsearch, fuff
-	---(make a fuzzing framework)---
+ffuf fuzzing
+	-u http://<domain or ips>/FUZZ 
+	-w <path/to/worldlist>
+	-fw 22 -> (fw = filter words) exclude response that have 22 words
+	-mc 200 -> match status code = 200
+	-H -> http headers
+	-d -> data body, here i specify the parameters of a POST request
 
 [[js directory and new urls enumeration]]
 

@@ -23,3 +23,6 @@
         SpiderFootHX
         Netlas.io
     BBOT
+
+--- fuzzing with seclists ---
+	ffuf -u <target_domain> -w /usr/share/wordlists/seclists/Discovery/DNS/subdomains-top1million-110000.txt -H "Host: FUZZ.<target_domain>"
