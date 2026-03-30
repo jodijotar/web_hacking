@@ -11,7 +11,7 @@
         		status_code
 
 --- web-spider ---
-    make a crawler that acess links and map the domain/subdomains of an website
+    make a crawler that access links and map the domain/subdomains of an website
         create an organized hierarquical directory structure
 
 --- full network scanning ---
