@@ -1,5 +1,5 @@
-1° [[manual recon and osint]]
-2° [[automated reconnaissance]]
+
+1° [[automated reconnaissance]]
+2° [[web spidering, features mapping and osint]]
 3° [[assesment directory structure]]
-6° mapping features
-7° vulnerability assessment
+4° vulnerability assessment

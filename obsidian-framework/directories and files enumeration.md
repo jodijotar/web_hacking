@@ -10,6 +10,7 @@ ffuf fuzzing
 	-mc 200 -> match status code = 200
 	-H -> http headers
 	-d -> data body, here i specify the parameters of a POST request
+	-e .html -> extension
 
 [[js directory and new urls enumeration]]
 

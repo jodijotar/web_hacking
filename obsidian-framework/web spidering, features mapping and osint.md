@@ -1,4 +1,6 @@
 [[sneaky osint techniques]]
+[[mapping features]]
+[[web_spidering]]
 
 domain and ASN number:
 	browser extension to grab ips: instant data scraper

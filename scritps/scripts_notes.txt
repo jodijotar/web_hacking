@@ -1,0 +1,21 @@
+--- asn-based website servers enumeration ---
+        script that handles the csv data:
+            organize and create directories -> furter automation
+        		make an additional file with all subdomains
+        		status_code
+            pick tech fingerprint from js enumeration
+            integrate with networking recon automation:
+        		asn
+        		ips
+        			open ports
+        		status_code
+
+--- web-spider ---
+    make a crawler that acess links and map the domain/subdomains of an website
+        create an organized hierarquical directory structure
+
+--- full network scanning ---
+
+
+
+    

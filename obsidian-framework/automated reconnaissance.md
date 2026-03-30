@@ -1,6 +1,6 @@
 --- Web ---
 	[[subdomain enumeration]]
-	[[bash script - website enumeration]]
+	[[script -> asn-based website servers enumeration]]
 	[[github recon]]
 	[[historical endpoints]]
 	[[directories and files enumeration]]
