@@ -1,7 +1,7 @@
 --- Web ---
 	[[subdomain enumeration]]
+	[[web_spidering]]
 	[[script -> asn-based website servers enumeration]]
-	[[github recon]]
 	[[historical endpoints]]
 	[[directories and files enumeration]]
 	[[parameter discovery]]
@@ -18,8 +18,6 @@
 --- monitoring ---
 	tools: amass, sublert, jsmon
 		monitoring for new changes such as http headers, js file changes, new subdomains, opening ports, etc.
-		
-CVEs + PoC -> https://snyk.io/vuln/
 
 page render:
 	eyewitness
@@ -28,6 +26,8 @@ page render:
         https://github.com/dxa4481/Snapper.
     gowitness
 	    use : gowitness file -f <domain_list> -P <path_screenshots>
+
+[[github recon]]
 
 framewoks:
 	reconFTW

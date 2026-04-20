@@ -4,4 +4,4 @@ Dowload the JSON datasets and the route-.kite
 - kr brute <domain> -w <route.kite_list_name> -A=apiroutes-210228:20000 -x 10
 
 Dowload the word list https://wordlists.assetnote.io
-- ffuf -u https://domain.com/FUZZ -w httparchive_apiroutes_date.txt -mc 200 -t (threads)
+- ffuf -u https://<domain>/FUZZ -w httparchive_apiroutes_date.txt -mc 200

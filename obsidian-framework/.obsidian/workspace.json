@@ -8,17 +8,13 @@
         "type": "tabs",
         "children": [
           {
-            "id": "85630c3892c87c54",
+            "id": "269c75b244d92d5c",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "automated reconnaissance.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "automated reconnaissance"
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
             }
           }
         ]
@@ -78,7 +74,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "67c90b24be8786ed",
@@ -183,27 +180,33 @@
       "bases:Create new base": false
     }
   },
-  "active": "85630c3892c87c54",
+  "active": "269c75b244d92d5c",
   "lastOpenFiles": [
-    "Hunting Workflow.md",
-    "invisible port scanning.md",
-    "js directory and new urls enumeration.md",
-    "directories and files enumeration.md",
     "automated reconnaissance.md",
     "script -> asn-based website servers enumeration.md",
-    "noisy port scanning.md",
-    "subdomain enumeration.md",
-    "web spidering, features mapping and osint.md",
-    "assesment directory structure.md",
-    "ASN.md",
-    "api fuzzing.md",
+    "historical endpoints.md",
+    "regex.md",
+    "directories and files enumeration.md",
     "parameter discovery.md",
+    "api fuzzing.md",
+    "github recon.md",
+    "subdomain enumeration.md",
+    "manual reconnaissance.md",
+    "mapping features.md",
+    "sneaky osint techniques.md",
+    "Hunting Workflow.md",
+    "vulnerability assessment.md",
+    "web_spidering.md",
+    "uniform resource identifier (URI).md",
+    "assesment directory structure.md",
+    "invisible port scanning.md",
+    "js directory and new urls enumeration.md",
+    "noisy port scanning.md",
+    "ASN.md",
     "worldlists.md",
     "Untitled",
     "test.md",
     "google dorking.md",
-    "cloud recon and monitoring.md",
-    "historical endpoints.md",
-    "github recon.md"
+    "cloud recon and monitoring.md"
   ]
 }
