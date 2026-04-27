@@ -2,7 +2,7 @@
 
 Personal reconnaissance framework and methodology notes for bug bounty hunting.
 Built around a linear, phased pipeline where each stage consumes the previous stage's output directly.
-The process is intentionally semi-automated -> chaining outputs manually providing infrastructure insights that fully automated pipelines miss. To view the notes of the dataflow, open the directory /obsidian/dataflow_recon with obsidian app.
+The process is intentionally semi-automated -> chaining outputs manually providing infrastructure insights that fully automated pipelines miss. To view the notes of the dataflow and the commands of the tools i use to produce this data open the directory /obsidian/dataflow_recon with obsidian app.
 
 ---
 
