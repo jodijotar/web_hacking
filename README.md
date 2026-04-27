@@ -2,7 +2,7 @@
 
 Personal reconnaissance framework and methodology notes for bug bounty hunting.
 Built around a linear, phased pipeline where each stage consumes the previous stage's output directly.
-The process is intentionally semi-automated -> chaining outputs manually providing infrastructure insights that fully automated pipelines miss. To view the notes of dataflow, open the directory /obsidian/dataflow_recon with obsidian app.
+The process is intentionally semi-automated -> chaining outputs manually providing infrastructure insights that fully automated pipelines miss. To view the notes of the dataflow, open the directory /obsidian/dataflow_recon with obsidian app.
 
 ---
 
@@ -93,7 +93,7 @@ DNS-track host discovery. Each tool writes its own raw output file for auditing.
 
 **phase2.1_network_active**
 
-Not every program is okay with you probing ports like a maniac in their network so do this phase carrefully, this can become really noisy. Runs in parallel with phase 2 and converges at phase 3. `asnmap_ranges.txt` is the full CIDR expansion of `asns.txt`. `naabu_live_ports.txt` contains IP:port pairs that responded on web-relevant ports (80, 443, 8080, 8443, 4443, 8888, 9000). `nmap_banners.txt` holds service and version banners. `ip_no_dns.txt` is the critical output — IPs that responded to the port scan but have no corresponding entry in `subdomains_resolved.txt`. These are hosts with no DNS record: forgotten staging environments, legacy infrastructure, shadow IT. Produced by diffing naabu output against the resolved subdomain list. I make this phase cover and focus in web servers ports, if you find an host that have other services running you can go deep on them, but in bug bounty targets thats is probably unlikely to find.
+Not every program is okay with you probing ports like a maniac in their network so do this phase carrefully, this can become really noisy. Runs in parallel with phase 2 and converges at phase 3. `asnmap_ranges.txt` is the full CIDR expansion of `asns.txt`. `naabu_live_ports.txt` contains IP:port pairs that responded on web-relevant ports (80, 443, 8080, 8443, 4443, 8888, 9000). `nmap_banners.txt` holds service and version banners. `ip_no_dns.txt` is the critical output — IPs that responded to the port scan but have no corresponding entry in `subdomains_resolved.txt`. These are hosts with no DNS record: forgotten staging environments, legacy infrastructure, shadow IT. Produced by diffing naabu output against the resolved subdomain list. This phase cover and focus in web servers ports, if you find an host that have other services running you can go deep on them, but in bug bounty targets thats is probably unlikely to happen.
 
 **phase3_surface**
 
