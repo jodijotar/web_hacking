@@ -136,5 +136,5 @@ chmod +x run.sh
 **re-attaching**
 
 ```bash
-docker start kali-jeyjey && docker attach kali-jeyjey
+docker start kali && docker attach kali
 ```
