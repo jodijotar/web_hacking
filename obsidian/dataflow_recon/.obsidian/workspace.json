@@ -8,7 +8,7 @@
         "type": "tabs",
         "children": [
           {
-            "id": "33ff2f109fb0bdf8",
+            "id": "eb8df628f4e94a9b",
             "type": "leaf",
             "state": {
               "type": "graph",
@@ -74,7 +74,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "5c0470e1949658ce",
@@ -179,33 +180,34 @@
       "bases:Create new base": false
     }
   },
-  "active": "33ff2f109fb0bdf8",
+  "active": "eb8df628f4e94a9b",
   "lastOpenFiles": [
+    "interesting.md",
     "5 - parameter and api discovery.md",
-    "url|src|href|callback|redirect|proxy|load|import|fetch|endpoint.md",
-    "js_post_params.txt.md",
-    "checkpoint 2 - feature mapping & threat model.md",
-    "2 - subdomain enumeration.md",
-    "0 - scope definition.md",
-    "1 - passive recon.md",
-    "3 - surface mapping.md",
-    "checkpoint 1 - manual triage.md",
     "4 - content discovery.md",
-    "6 - targeted vulnerability assessment.md",
+    "checkpoint 1 - manual triage.md",
+    "3 - surface mapping.md",
+    "2 - subdomain enumeration.md",
     "2.1 - network active scanning.md",
-    "live_hosts.csv.md",
-    "live_hosts_csv.md",
+    "1 - passive recon.md",
+    "0 - scope definition.md",
+    "6 - targeted vulnerability assessment.md",
+    "checkpoint 2 - feature mapping & threat model.md",
+    "Untitled",
+    "params_merged.txt.md",
+    "graphql_schema.json.md",
+    "openapi_specs.md",
+    "wellknow_findings.txt.md",
+    "js grep regex.md",
+    "all_urls.txt.md",
+    "screenshots.md",
+    "subdomains_raw.txt.md",
+    "subdomains_resolved.txt.md",
+    "permutations.txt.md",
+    "cloud_hosts.txt.md",
     "sonar_rdns.txt.md",
     "smap_results.txt.md",
-    "interesting_params.txt.md",
-    "api_endpoints.txt.md",
-    "params.txt.md",
-    "js_endpoints.txt.md",
-    "spidered_urls.txt.md",
-    "naabu_live_ports.txt.md",
-    "historical_urls.txt.md",
-    "priority_hosts.txt.md",
-    "nmap_banners.md",
-    "screenshots - directory.md"
+    "asns.txt.md",
+    "ip_ranges.txt.md"
   ]
 }

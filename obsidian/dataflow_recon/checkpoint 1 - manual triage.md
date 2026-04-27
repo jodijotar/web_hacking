@@ -1,10 +1,7 @@
 #checkpoint
 
 review screenshots in gowtiness
-annotate live_hosts.csv with a priority column
-	high
-	medium
-	skip
+annotate live_hosts.csv with priority (high / medium / skip)
 
 if ip_no_dns.txt was generated in 2.1 phase review carefully this ips
 

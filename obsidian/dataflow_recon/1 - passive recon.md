@@ -4,7 +4,7 @@
 
 kaeferjaer.gay
 	dowload ssl cert snapshots for cloud ips.
-		cat \*.txt | grep -F ".target.com" | awk ...
+		`cat *.txt | grep -F ".target.com" | awk -F'--' '{print $2}' | tr '[' ' ' | sed 's/ //' | sed 's/]//' | grep -F ".target.com" | sort -u`
 
 Caduceus
 	active cert scan over port 443 of cloud ip ranges to find hosts sharing the same cert
@@ -15,7 +15,6 @@ gungnir
 Censys / tracxn
 	discover acquired companies and related domains -> expand scope.txt accordingly
 
-
 *network:
 
 smap
@@ -23,7 +22,7 @@ smap
 
 Censys API (paid resource)
 	historical scan data with port and protocol information.
-		->useful to confirm which ips are currently live
+		->useful to confirm which ips are currently live before commiting to active scanning
 
 Project Sonar (Rapid7)
 	open dataset of forward and reverse DNS mappings collected from internet-wide scans.
@@ -38,6 +37,7 @@ Project Sonar (Rapid7)
 
 -- output:
 	[[cloud_hosts.txt]]
+	[[censys_hosts.txt]]
 	[[smap_results.txt]]
 	[[sonar_rdns.txt]]
 

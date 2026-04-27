@@ -1,1 +1,0 @@
-list all apex domains and wildcard scopes from the program

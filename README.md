@@ -28,9 +28,6 @@ engagements/
     │   └── sonar_rdns.txt
     │
     ├── phase2_subdomains/
-    │   ├── subfinder_raw.txt
-    │   ├── amass_raw.txt
-    │   ├── chaos_raw.txt
     │   ├── subdomains_raw.txt
     │   ├── permutations.txt
     │   └── subdomains_resolved.txt
@@ -38,12 +35,12 @@ engagements/
     ├── phase2.1_network_active/
     │   ├── asnmap_ranges.txt
     │   ├── naabu_live_ports.txt
-    │   ├── nmap_banners.txt
     │   └── ip_no_dns.txt
     │
     ├── phase3_surface/
-    │   ├── live_hosts.csv
-    │   └── screenshots/
+    │   ├── all_hosts.txt
+    │   └── live_hosts.csv
+    │   └── screenshots/   
     │
     ├── priority_hosts.txt
     │
@@ -57,8 +54,6 @@ engagements/
     │   └── all_urls.txt
     │
     ├── phase5_params/
-    │   ├── paramspider_raw.txt
-    │   ├── arjun_raw.txt
     │   ├── params_merged.txt
     │   ├── api_endpoints.txt
     │   ├── wellknown_findings.txt

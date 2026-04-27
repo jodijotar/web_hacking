@@ -19,6 +19,7 @@ gobuster dns + vhost
 -- output:
 	[[subdomains_raw.txt]]
 	[[subdomains_resolved.txt]]
+	[[permutations.txt]]
 
 subphase -> [[2.1 - network active scanning]]
 next phase -> [[3 - surface mapping]]
