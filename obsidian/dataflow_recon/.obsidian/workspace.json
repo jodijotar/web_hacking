@@ -11,10 +11,14 @@
             "id": "33ff2f109fb0bdf8",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
+              "type": "markdown",
+              "state": {
+                "file": "2 - subdomain enumeration.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2 - subdomain enumeration"
             }
           }
         ]
@@ -182,18 +186,18 @@
   },
   "active": "33ff2f109fb0bdf8",
   "lastOpenFiles": [
+    "0 - scope definition.md",
+    "1 - passive recon.md",
+    "2 - subdomain enumeration.md",
     "3 - surface mapping.md",
+    "checkpoint 1 - manual triage.md",
+    "4 - content discovery.md",
+    "5 - parameter and api discovery.md",
+    "checkpoint 2 - feature mapping & threat model.md",
+    "6 - targeted vulnerability assessment.md",
+    "2.1 - network active scanning.md",
     "live_hosts.csv.md",
     "live_hosts_csv.md",
-    "2 - subdomain enumeration.md",
-    "1 - passive recon.md",
-    "0 - scope definition.md",
-    "checkpoint 2 - feature mapping & threat model.md",
-    "checkpoint 1 - manual triage.md",
-    "6 - targeted vulnerability assessment.md",
-    "5 - parameter and api discovery.md",
-    "4 - content discovery.md",
-    "2.1 - network active scanning.md",
     "Untitled.md",
     "sonar_rdns.txt.md",
     "smap_results.txt.md",

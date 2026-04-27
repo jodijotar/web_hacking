@@ -10,7 +10,7 @@ bbot spider
 		
 		complements wayback with current live links
 
-gau -> JS filter -> linkfinder
+gau -> grep JS filter -> linkfinder
 	gau | grep -iE '\.js' | grep -ivE '(\.jsp|\.json)' | anti-burl | linkfinder
 
 -- input:

@@ -21,7 +21,7 @@ Censys / tracxn
 smap
 	queries shodan existing scan data to return port and banner info for ip ranges
 
-Censys API
+Censys API (paid resource)
 	historical scan data with port and protocol information.
 		->useful to confirm which ips are currently live
 
