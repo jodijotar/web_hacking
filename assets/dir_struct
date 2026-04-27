@@ -1,0 +1,89 @@
+engagements/
+└── target_com/
+    ├── scope.txt                              # apex domains, one per line
+    ├── asns.txt                               # discovered ASN numbers
+    ├── ip_ranges.txt                          # CIDR blocks from ASN lookup
+    │
+    ├── phase1_passive/
+    │   ├── cloud_hosts.txt                    # extracted from kaeferjaeger cert dump
+    │   ├── censys_hosts.txt                   # hosts and open ports from Censys API
+    │   ├── smap_results.txt                   # Shodan-backed passive port data (no packets sent)
+    │   └── sonar_rdns.txt                     # Rapid7 RDNS matches for ip_ranges.txt
+    │                                          # key value: reveals IPs with no current DNS record
+    │
+    ├── phase2_subdomains/
+    │   ├── subfinder_raw.txt                  # per-tool output kept for auditing
+    │   ├── amass_raw.txt
+    │   ├── chaos_raw.txt
+    │   ├── subdomains_raw.txt                 # cat *_raw.txt | sort -u (merged)
+    │   ├── permutations.txt                   # altdns / dnsgen output
+    │   └── subdomains_resolved.txt            # only hosts that resolved via dnsx
+    │
+    ├── phase2.1_network_active/               # optional — only when program explicitly permits scanning
+    │   ├── asnmap_ranges.txt                  # expanded CIDRs derived from asns.txt
+    │   ├── naabu_live_ports.txt               # IP:port pairs that responded (web-focused ports)
+    │   │                                      # recommended: 80,443,8080,8443,4443,8888,9000
+    │   ├── nmap_banners.txt                   # service and version banners from nmap -sV
+    │   └── ip_no_dns.txt                      # IPs that responded but have no entry in
+    │                                          # subdomains_resolved.txt — your forgotten
+    │                                          # staging environment candidates
+    │                                          # produced with:
+    │                                          # comm -23 \
+    │                                          #   <(awk -F: '{print $1}' naabu_live_ports.txt | sort -u) \
+    │                                          #   <(awk '{print $2}' ../phase2_subdomains/subdomains_resolved.txt | sort -u)
+    │
+    ├── phase3_surface/
+    │   ├── live_hosts.csv                     # httpx output: status, title, tech, asn, server
+    │   │                                      # fed by BOTH subdomains_resolved.txt (phase 2)
+    │   │                                      # AND ip_no_dns.txt (phase 2.1) — convergence point
+    │   └── screenshots/                       # gowitness output directory
+    │
+    ├── priority_hosts.txt                     # manually curated after checkpoint 1
+    │                                          # checkpoint: review screenshots, annotate live_hosts.csv
+    │                                          # with priority (high / medium / skip)
+    │                                          # pay special attention to hosts from ip_no_dns.txt —
+    │                                          # these are invisible to other hunters
+    │
+    ├── phase4_content/
+    │   ├── historical_urls.txt                # gau + waybackurls merged (passive — queries archives)
+    │   ├── spidered_urls.txt                  # bbot spider output (active)
+    │   ├── directories.txt                    # ffuf directory brute force (active, noisy)
+    │   ├── js_files.txt                       # filtered live JS URLs via anti-burl
+    │   ├── js_cache/                          # locally downloaded JS bundle files
+    │   │   └── <md5hash>.js                   # named by hash to avoid collisions
+    │   ├── js_endpoints.txt                   # linkfinder + collector.py extracted endpoints
+    │   └── all_urls.txt                       # single source of truth — everything merged via anew
+    │
+    ├── phase5_params/
+    │   ├── paramspider_raw.txt                # wayback-sourced param URLs (passive)
+    │   ├── arjun_raw.txt                      # actively discovered hidden params
+    │   ├── params_merged.txt                  # all GET params unified
+    │   ├── api_endpoints.txt                  # kiterunner API route brute force output
+    │   ├── wellknown_findings.txt             # /.well-known/ probe results
+    │   │                                      # check: openid-configuration, security.txt,
+    │   │                                      # assetlinks.json, change-password, mta-sts.txt
+    │   ├── openapi_specs/                     # swagger / openapi schema dumps
+    │   │   └── target_api_v1.json             # probed paths: /api-docs, /swagger.json,
+    │   │                                      # /openapi.json, /v1/api-docs, /redoc, /docs
+    │   ├── graphql_schema.json                # introspection result if applicable
+    │   │                                      # POST {"query":"{ __schema { types { name
+    │   │                                      # fields { name } } } }"} to /graphql
+    │   ├── js_post_params.txt                 # server-side URL patterns extracted from js_cache/
+    │   │                                      # grep for: fetch/axios POST with url= body params,
+    │   │                                      # proxy/import/render/webhook/screenshot verbs
+    │   │                                      # followed by https:// patterns
+    │   └── interesting/
+    │       ├── gf_ssrf.txt                    # gf ssrf pattern matches from all_urls.txt
+    │       ├── gf_redirect.txt                # open redirect candidates
+    │       └── gf_xss.txt                     # reflection candidates
+    │
+    ├── feature_map.md                         # manual — built at checkpoint 2
+    │                                          # map auth flows, user roles, file uploads,
+    │                                          # redirects, payment logic, URL-consuming features
+    │                                          # define threat model: worst case for this org?
+    │
+    └── findings/
+        ├── ssrf/
+        ├── idor/
+        ├── open_redirect/
+        └── xss/

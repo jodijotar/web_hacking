@@ -1,4 +1,4 @@
-<img src="assets/graph_view_1-1.png">
+<img src="assets/dataflow_graph.png">
 
 ## kali linux docker cli first use:
 ```sh

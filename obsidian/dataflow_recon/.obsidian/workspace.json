@@ -1,0 +1,212 @@
+{
+  "main": {
+    "id": "2aa680509456ae09",
+    "type": "split",
+    "children": [
+      {
+        "id": "6549b91427c768b9",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "33ff2f109fb0bdf8",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "ab543c1cbc6a7cf8",
+    "type": "split",
+    "children": [
+      {
+        "id": "31d42b36a7b26132",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "49a3b2f39874e242",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "c767abf9e080c25a",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "847b20835ecbec2d",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200,
+    "collapsed": true
+  },
+  "right": {
+    "id": "5c0470e1949658ce",
+    "type": "split",
+    "children": [
+      {
+        "id": "d9025ebbafcbf85f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c89f2e425651b600",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "2 - subdomain enumeration.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for 2 - subdomain enumeration"
+            }
+          },
+          {
+            "id": "cd1214aaf52f4cf2",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "2 - subdomain enumeration.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from 2 - subdomain enumeration"
+            }
+          },
+          {
+            "id": "38ccb05566561e7c",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "c8f1a2706457c236",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "cb94d547176f1f18",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "2 - subdomain enumeration.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of 2 - subdomain enumeration"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "33ff2f109fb0bdf8",
+  "lastOpenFiles": [
+    "3 - surface mapping.md",
+    "live_hosts.csv.md",
+    "live_hosts_csv.md",
+    "2 - subdomain enumeration.md",
+    "1 - passive recon.md",
+    "0 - scope definition.md",
+    "checkpoint 2 - feature mapping & threat model.md",
+    "checkpoint 1 - manual triage.md",
+    "6 - targeted vulnerability assessment.md",
+    "5 - parameter and api discovery.md",
+    "4 - content discovery.md",
+    "2.1 - network active scanning.md",
+    "Untitled.md",
+    "sonar_rdns.txt.md",
+    "smap_results.txt.md",
+    "interesting_params.txt.md",
+    "api_endpoints.txt.md",
+    "params.txt.md",
+    "js_endpoints.txt.md",
+    "spidered_urls.txt.md",
+    "naabu_live_ports.txt.md",
+    "historical_urls.txt.md",
+    "priority_hosts.txt.md",
+    "nmap_banners.md",
+    "screenshots - directory.md",
+    "ip_no_dns.txt.md"
+  ]
+}
