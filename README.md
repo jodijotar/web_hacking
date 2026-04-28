@@ -100,7 +100,7 @@ Manually curated after reviewing gowitness screenshots. Hosts annotated as high,
 
 **phase4_content**
 
-URL and content discovery. `historical_urls.txt` is the merged output of gau and waybackurls — entirely passive, queries public archives only. `spidered_urls.txt` is the active bbot spider output. `directories.txt` is the ffuf directory brute force result. `js_files.txt` contains filtered, validated live JS URLs. `js_cache/` holds locally downloaded JS bundle files named by MD5 hash to avoid collisions. Maybe you can make some integration with agentic ai to analyse this js files to complement the threat modeling, frontends fetches and get insights. `js_endpoints.txt` contains internal endpoints extracted from those bundles via linkfinder and collector.py. `all_urls.txt` is the single source of truth — everything merged via anew.
+URL and content discovery. `historical_urls.txt` is the merged output of gau and waybackurls — entirely passive, queries public archives only. `spidered_urls.txt` is the active bbot spider output. `directories.txt` is the ffuf directory brute force result. `js_files.txt` contains filtered, validated live JS URLs. `js_cache/` holds locally downloaded JS bundle files named by MD5 hash to avoid collisions. `js_endpoints.txt` contains internal endpoints extracted from those bundles via linkfinder and collector.py. `all_urls.txt` is the single source of truth — everything merged via anew.
 
 **phase5_params**
 
@@ -118,7 +118,7 @@ One subdirectory per vulnerability class. Each confirmed finding lives here with
 
 ## kali docker
 
-The hacking environment i use runs inside a Kali Linux container. This is good for using clouds as infrastructure (i don't want to be blocked in my public ip when hacking lol) 
+The hacking environment i use runs inside a Kali Linux container. This is good for using clouds as infrastructure and fuzzing with clusters
 
 **setup**
 
