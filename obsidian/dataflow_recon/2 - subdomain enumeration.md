@@ -12,6 +12,9 @@ massdns / dnsx
 gobuster dns + vhost
 	brute force DNS and virtual hosts. Append results to the resolved list
 
+cleaning out of scope before surface mapping:
+	`grep -vFf out_of_scope.txt subdomains_resolved.txt > subdomains_resolved.txt`
+
 -- input:
 	scope.txt
 	cloud_hosts.txt

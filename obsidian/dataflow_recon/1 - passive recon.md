@@ -1,4 +1,8 @@
 #phase 
+
+Censys / tracxn
+	discover acquired companies and related domains -> expand scope.txt accordingly
+
 asnmap
 	ip_ranges.txt enumeration thorough ASNs
 	`cat asns.txt | asnmap -silent > ip_ranges.txt`
@@ -12,9 +16,6 @@ Caduceus
 
 gungnir
 	subscribe to certificate transparency logs for continuous monitoring of new subdomains
-
-Censys / tracxn
-	discover acquired companies and related domains -> expand scope.txt accordingly
 
 smap
 	queries shodan existing scan data to return port and banner info for ip ranges
