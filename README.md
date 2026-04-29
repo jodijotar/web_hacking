@@ -19,12 +19,12 @@ engagements/
 └── target_com/
     ├── scope.txt
     ├── asns.txt
-    ├── ip_ranges.txt
     │
     ├── phase1_passive/
     │   ├── cloud_hosts.txt
     │   ├── censys_hosts.txt
     │   ├── smap_results.txt
+    │   ├── ip_ranges.txt
     │   └── sonar_rdns.txt
     │
     ├── phase2_subdomains/

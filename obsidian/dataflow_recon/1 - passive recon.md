@@ -1,6 +1,7 @@
 #phase 
-
-*web:
+asnmap
+	ip_ranges.txt enumeration thorough ASNs
+	`cat asns.txt | asnmap -silent > ip_ranges.txt`
 
 kaeferjaer.gay
 	dowload ssl cert snapshots for cloud ips.
@@ -14,8 +15,6 @@ gungnir
 
 Censys / tracxn
 	discover acquired companies and related domains -> expand scope.txt accordingly
-
-*network:
 
 smap
 	queries shodan existing scan data to return port and banner info for ip ranges
@@ -40,5 +39,6 @@ Project Sonar (Rapid7)
 	[[censys_hosts.txt]]
 	[[smap_results.txt]]
 	[[sonar_rdns.txt]]
-
+	[[ip_ranges.txt]]
+	
 next phase -> [[2 - subdomain enumeration]]
