@@ -76,11 +76,11 @@ engagements/
 
 **scope and root files**
 
-`scope.txt` lists all apex domains in scope, one per line. `asns.txt` holds the ASN numbers discovered during scope definition via bgp.he.net or ARIN. `ip_ranges.txt` contains the CIDR blocks derived from those ASNs.
+`scope.txt` lists all apex domains in scope, one per line. `asns.txt` holds the ASN numbers discovered during scope definition via bgp.he.net or ARIN.
 
 **phase1_passive**
 
-Zero-footprint intelligence gathering. `cloud_hosts.txt` is extracted from kaeferjaeger's weekly SSL certificate snapshots of cloud provider IP ranges. `censys_hosts.txt` contains host and port data from the Censys API. `smap_results.txt` holds Shodan-backed passive port data. `sonar_rdns.txt` is built from Rapid7's Project Sonar RDNS dataset cross-referenced against `ip_ranges.txt`; its key value is surfacing IPs that once had DNS records but no longer do.
+Zero-footprint intelligence gathering.  `ip_ranges.txt` contains the CIDR block derived from those ASNs. `cloud_hosts.txt` is extracted from kaeferjaeger's weekly SSL certificate snapshots of cloud provider IP ranges. `censys_hosts.txt` contains host and port data from the Censys API. `smap_results.txt` holds Shodan-backed passive port data. `sonar_rdns.txt` is built from Rapid7's Project Sonar RDNS dataset cross-referenced against `ip_ranges.txt`; its key value is surfacing IPs that once had DNS records but no longer do.
 
 **phase2_subdomains**
 
