@@ -9,6 +9,10 @@ altdns / dnsgen
 massdns / dnsx
 	resolve the full merged list. Discard NXDOMAIN, keep live hosts
 
+```	
+cat domains.txt | dnsgen - | massdns -r resolvers.txt -t A -o J --flush 2>/dev/null
+```
+
 gobuster dns + vhost
 	brute force DNS and virtual hosts. Append results to the resolved list
 
