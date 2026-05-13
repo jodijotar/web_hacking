@@ -14,5 +14,7 @@ useful web resources:
 	ARIN and RIPE Regional Registers: https://whois.arin.net/ui/query.do
 	tracxn.com 
 	
+whois often revels phone numbers and email addresses of individuals responsible for managing the domain
+    useful for phishing
 
-
+whoisfreaks access historical whois records making a useful tool to see changes in ownership over time

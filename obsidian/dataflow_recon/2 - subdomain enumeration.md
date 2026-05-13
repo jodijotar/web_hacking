@@ -1,32 +1,37 @@
-#phase 
+#phase
 
-subfinder / amass
-	run with other services api keys (github puppet, shodan, facebook CT, c99, security trails) merge and deduplicate with anew
+DNS-track host discovery. altdns + dnsgen replaced by alterx; massdns/dnsx wrapped by puredns for proper wildcard handling
 
-altdns / dnsgen
-	generate permutations from the discovered subdomains and feed back into DNS resolution
+merge passive sources
+	`cat subdomains_raw.txt cloud_hosts.txt censys_hosts.txt sonar_rdns.txt 2>/dev/null | sort -u > subdomains_merged.txt`
 
-massdns / dnsx
-	resolve the full merged list. Discard NXDOMAIN, keep live hosts
+puredns resolve (wildcard-aware)
+	`puredns resolve subdomains_merged.txt -r resolvers.txt --write subdomains_resolved.txt`
+	puredns runs massdns under the hood + handles wildcard DNS responses correctly (massdns/dnsx alone produce inflated lists on wildcard-DNS targets)
 
-```	
-cat domains.txt | dnsgen - | massdns -r resolvers.txt -t A -o J --flush 2>/dev/null
-```
+alterx permutations (conditional — only if subdomain count is thin, <50)
+	`alterx -enrich -l subdomains_resolved.txt -o permutations.txt`
+	alterx auto-extracts target-specific word patterns. skip this step on targets where you already have hundreds of resolved subs — diminishing returns
+	`puredns resolve permutations.txt -r resolvers.txt --write -- | anew subdomains_resolved.txt`
 
-gobuster dns + vhost
-	brute force DNS and virtual hosts. Append results to the resolved list
+dnsx enrichment (optional, only for IP-track pivot)
+	`dnsx -l subdomains_resolved.txt -ptr -cname -a -resp -o dns_enriched.txt`
 
 cleaning out of scope before surface mapping:
-	`grep -vFf out_of_scope.txt subdomains_resolved.txt > subdomains_resolved.txt`
+	`grep -vFf out_of_scope.txt subdomains_resolved.txt | sponge subdomains_resolved.txt`
+
+-- removed from previous workflow:
+	altdns (obsolete, hardcoded patterns)
+	dnsgen (superseded by alterx -enrich)
+	gobuster dns + vhost (puredns covers bruteforce; vhost rarely needed on modern targets)
 
 -- input:
 	scope.txt
-	cloud_hosts.txt
+	subdomains_raw.txt, cloud_hosts.txt, censys_hosts.txt
 
 -- output:
-	[[subdomains_raw.txt]]
 	[[subdomains_resolved.txt]]
-	[[permutations.txt]]
+	[[permutations.txt]]  (optional)
 
-subphase -> [[2.1 - network active scanning]]
+subphase -> [[2.1 - network active scanning]]  (only when IP/ASN scope present)
 next phase -> [[3 - surface mapping]]

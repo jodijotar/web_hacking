@@ -1,8 +1,12 @@
 # web_hacking
 
-Personal reconnaissance framework and methodology notes for bug bounty hunting.
-Built around a linear, phased pipeline where each stage consumes the previous stage's output directly.
-The process is intentionally semi-automated -> chaining outputs manually providing infrastructure insights that fully automated pipelines miss. To view the notes of the dataflow and the commands of the tools i use to produce this data open the directory /obsidian/dataflow_recon with obsidian app.
+Personal reconnaissance + vulnerability assessment framework for **Bugcrowd public BBPs**, focused on **broken access control, IDOR, server misconfigurations, and SSRF**.
+
+Linear, phased pipeline where each stage consumes the previous stage's output directly. **Intentionally semi-automated** — chaining outputs manually surfaces infrastructure insights and BAC opportunities that fully automated pipelines miss.
+
+Tools are deliberately minimized. Any tool that can't be drawn in two steps from "tool runs" to "manually-inspectable artifact pointing at a BAC-class bug" is excluded. See `obsidian/notes_archive/bb-workflow refact.md` for the full reasoning on each tooling decision.
+
+For the full dataflow notes and per-phase commands, open `/obsidian/dataflow_recon/` in Obsidian.
 
 ---
 
@@ -18,107 +22,151 @@ The process is intentionally semi-automated -> chaining outputs manually providi
 engagements/
 └── target_com/
     ├── scope.txt
-    ├── asns.txt
+    ├── asns.txt                          (optional — only if IP/ASN scope present)
     │
     ├── phase1_passive/
-    │   ├── cloud_hosts.txt
-    │   ├── censys_hosts.txt
+    │   ├── subdomains_raw.txt            (subfinder)
+    │   ├── cloud_hosts.txt               (kaeferjaeger SSL snapshots)
     │   ├── smap_results.txt
-    │   ├── ip_ranges.txt
-    │   └── sonar_rdns.txt
+    │   ├── censys_hosts.txt              (optional)
+    │   ├── sonar_rdns.txt                (optional — IP scope only)
+    │   └── github_secrets.txt            (trufflehog github)
     │
     ├── phase2_subdomains/
-    │   ├── subdomains_raw.txt
-    │   ├── permutations.txt
-    │   └── subdomains_resolved.txt
+    │   ├── subdomains_merged.txt
+    │   ├── subdomains_resolved.txt       (puredns)
+    │   └── permutations.txt              (alterx — conditional)
     │
-    ├── phase2.1_network_active/
+    ├── phase2.1_network_active/          (only when IP scope present)
     │   ├── asnmap_ranges.txt
     │   ├── naabu_live_ports.txt
     │   └── ip_no_dns.txt
     │
     ├── phase3_surface/
     │   ├── all_hosts.txt
-    │   └── live_hosts.csv
-    │   └── screenshots/   
+    │   ├── live_hosts.csv                (httpx -tech-detect)
+    │   └── screenshots/                  (gowitness)
     │
-    ├── priority_hosts.txt
+    ├── priority_hosts.txt                (manual triage from checkpoint 1)
+    │
+    ├── phase3.5_auth/                    NEW
+    │   ├── auth_accounts.md              (account roster, seed IDs per role)
+    │   └── (tokens live in ~/.bbp_creds/<target>.env — never in repo)
     │
     ├── phase4_content/
-    │   ├── historical_urls.txt
-    │   ├── spidered_urls.txt
-    │   ├── directories.txt
-    │   ├── js_files.txt
-    │   ├── js_cache/
-    │   ├── js_endpoints.txt
-    │   └── all_urls.txt
+    │   ├── historical_urls.txt           (gau — replaces waybackurls + paramspider)
+    │   ├── js_endpoints.txt              (jsluice — replaces linkfinder)
+    │   ├── all_urls.txt
+    │   └── (JXScout cache lives in ~/.jxscout/<target>/)
     │
     ├── phase5_params/
-    │   ├── params_merged.txt
+    │   ├── params_passive.txt            (unfurl on gau output)
+    │   ├── arjun_raw.txt                 (optional, top priority host only)
     │   ├── api_endpoints.txt
-    │   ├── wellknown_findings.txt
     │   ├── openapi_specs/
     │   ├── graphql_schema.json
-    │   ├── js_post_params.txt
+    │   ├── js_post_params.txt            (SSRF surface from JXScout bundles)
+    │   ├── wellknown_findings.txt
     │   └── interesting/
     │       ├── gf_ssrf.txt
-    │       ├── gf_redirect.txt
-    │       └── gf_xss.txt
+    │       └── gf_redirect.txt
     │
-    ├── feature_map.md
+    ├── phase5.5_misconfig/               NEW
+    │   ├── nuclei_findings.txt           (tag-restricted: exposure,token,takeover)
+    │   ├── subzy_takeovers.txt
+    │   └── cloud_enum_results.txt
+    │
+    ├── feature_map.md                    (manual, ≥30 min per role per tenant)
+    ├── threat_model.md
+    │
+    ├── phase7_assessment/                NEW
+    │   ├── bac_findings.md
+    │   ├── jwt_findings.md               (when JWT in use)
+    │   └── saml_findings.md              (when SAML in scope)
+    │
+    ├── phase8_chains/                    NEW
+    │   └── chain_findings.md             (P3+P3 → P1 candidates)
     │
     └── findings/
         ├── ssrf/
         ├── idor/
-        ├── open_redirect/
-        └── xss/
+        └── access_control/
 ```
 
-**scope and root files**
+---
 
-`scope.txt` lists all apex domains in scope, one per line. `asns.txt` holds the ASN numbers discovered during scope definition via bgp.he.net or ARIN.
+## the BAC-focused phase flow
 
-**phase1_passive**
+```
+phase 0  scope          bbscope, manual brief review
+phase 1  passive        subfinder, kaeferjaeger, trufflehog (github + postman), smap
+phase 2  subdomains     puredns + alterx (conditional)
+phase 2.1 network       naabu + asnmap (only if IP/ASN scope)
+phase 3  surface        httpx -tech-detect, gowitness
+─── checkpoint 1: manual screenshot review + priority scoring ───
+phase 3.5 auth          3 accounts × 2 tenants, PwnFox, Caido sessions      [NEW]
+phase 4  content        gau + JXScout + jsluice
+phase 5  params/api     unfurl, arjun (optional), openapi/graphql probe, mobile APK
+phase 5.5 misconfig     nuclei tag-restricted, subzy, cloud_enum            [NEW]
+phase 6  feature map    manual ≥30 min per role × per tenant (Douglas Day)
+phase 7  BAC assessment Autorize/AuthMatrix/Auth Analyzer + BAC matrix      [NEW]
+phase 8  chain hunt     match against catalog, chain low → critical         [NEW]
+findings → Bugcrowd report with VRT pre-pick + chain narration
+```
 
-Zero-footprint intelligence gathering.  `ip_ranges.txt` contains the CIDR block derived from those ASNs. `cloud_hosts.txt` is extracted from kaeferjaeger's weekly SSL certificate snapshots of cloud provider IP ranges. `censys_hosts.txt` contains host and port data from the Censys API. `smap_results.txt` holds Shodan-backed passive port data. `sonar_rdns.txt` is built from Rapid7's Project Sonar RDNS dataset cross-referenced against `ip_ranges.txt`; its key value is surfacing IPs that once had DNS records but no longer do.
+---
 
-**phase2_subdomains**
+## what changed in this refactor
 
-DNS-track host discovery. Each tool writes its own raw output file for auditing. `subdomains_raw.txt` is the merged and deduplicated result of all tool outputs. `permutations.txt` is generated by altdns and dnsgen from the merged list, producing name variations that no passive source would contain. `subdomains_resolved.txt` is the final output — only hosts that returned a valid DNS resolution via dnsx.
+**dropped** (no longer in pipeline):
+- `waybackurls` — `gau` is a strict superset
+- `paramspider` — duplicates `gau` Wayback queries; replaced by `gau | unfurl keys`
+- `altdns`, `dnsgen` — obsolete patterns; `alterx -enrich` replaces both
+- `linkfinder` — regex; replaced by `jsluice` (AST-based, follows fetch/XHR flows)
+- `ffuf` directory bruteforce — modern SaaS surface lives in JS, not at `/admin` `/backup.zip`
+- `katana` — SPA crawler returns static index; JXScout actually reaches the routes
+- `kiterunner` — for BAC focus, leaked openapi/swagger > API wordlist
+- `bbot` (when run alongside the piecemeal tools — pick one mode)
+- `Param Miner` — cache-poisoning/host-header tool; wrong target for BAC focus
 
-**phase2.1_network_active**
+**added**:
+- `bbscope` — Bugcrowd-native scope tracking
+- `trufflehog github + postman` — first-class secret discovery
+- `puredns` — wildcard-aware DNS resolution (replaces raw massdns/dnsx)
+- `alterx` — modern target-aware subdomain permutations
+- `JXScout` + `jxscout-caido` plugin — JS preprocessing layer (the AI-consumable folder)
+- `jsluice` — AST-based JS endpoint + secret extraction
+- `nuclei` with tight tags (`-tags exposure,token,takeover -severity high,critical`)
+- `subzy` + `nuclei takeovers/` for subdomain takeover detection
+- `cloud_enum` for AWS/Azure/GCS misconfig
+- Caido auth-differential plugins (Autorize port, AuthMatrix port, Auth Analyzer)
+- `jwt_tool`, `JWT Editor` (Caido extension)
 
-Not every program is okay with you probing ports like a maniac in their network so do this phase carrefully, this can become really noisy. Runs in parallel with phase 2 and converges at phase 3. `asnmap_ranges.txt` is the full CIDR expansion of `asns.txt`. `naabu_live_ports.txt` contains IP:port pairs that responded on web-relevant ports (80, 443, 8080, 8443, 4443, 8888, 9000). `nmap_banners.txt` holds service and version banners. `ip_no_dns.txt` is the critical output — IPs that responded to the port scan but have no corresponding entry in `subdomains_resolved.txt`. These are hosts with no DNS record: forgotten staging environments, legacy infrastructure, shadow IT. Produced by diffing naabu output against the resolved subdomain list. This phase cover and focus in web servers ports, if you find an host that have other services running you can go deep on them, but in bug bounty targets thats is probably unlikely to happen.
+**new phases**:
+- **3.5 authenticated recon** — multi-account, multi-tenant. without this phase, no BAC testing happens
+- **5.5 misconfig sweep** — runs in background during phase 6/7, doesn't pull focus
+- **7 BAC/IDOR assessment** — auth-differential tools + 20-row BAC matrix applied manually
+- **8 chain hunt** — match findings against chain catalog before reporting (turns P3+P3 into P1)
 
-**phase3_surface**
+---
 
-Convergence point for both the DNS track (phase 2) and the IP track (phase 2.1). All discovered hosts are merged and probed identically with httpx. `live_hosts.csv` contains status code, title, technology stack, web server, ASN, and content length for every live host. `screenshots/` holds gowitness output for every host in the CSV.
+## AI integration touchpoints
 
-**priority_hosts.txt**
+Five high-leverage AI touchpoints. Each adds measurable value; everything else is theatre.
 
-Manually curated after reviewing gowitness screenshots. Hosts annotated as high, medium, or skip. Hosts originating from `ip_no_dns.txt` deserve extra attention — they are not visible to hunters using standard subdomain enumeration. All subsequent phases operate only against this list.
+1. **Caido Skill for Claude Code** (caido.io/blog/2026-03-06-caido-skill) — HTTPQL queries, replay orchestration, match-and-replace synthesis. Highest-leverage available today
+2. **JXScout → Claude Code for JS bundle analysis** — point Claude at `~/.jxscout/<target>/` with explicit prompt: enumerate every fetch/axios/XHR call, infer method + path + role, flag UUID/numeric ID params with no visible role check
+3. **Shift inside Caido** for wordlist generation + natural-language Replay modification. Bring-your-own API key (Anthropic preferred for code reasoning, or local Ollama for sensitive engagements)
+4. **Separate validator agent** in any `/hunt` workflow — re-runs every Claude-flagged finding via curl-only with no attack-chain context. Addresses the ~20% false-positive rate problem (XBOW's H1 leaderboard architecture)
+5. **Report drafting** — Claude takes repro steps + VRT entry + observed business consequence and drafts the executive summary + chain narration in Bugcrowd's submission format
 
-**phase4_content**
-
-URL and content discovery. `historical_urls.txt` is the merged output of gau and waybackurls — entirely passive, queries public archives only. `spidered_urls.txt` is the active bbot spider output. `directories.txt` is the ffuf directory brute force result. `js_files.txt` contains filtered, validated live JS URLs. `js_cache/` holds locally downloaded JS bundle files named by MD5 hash to avoid collisions. `js_endpoints.txt` contains internal endpoints extracted from those bundles via linkfinder and collector.py. `all_urls.txt` is the single source of truth — everything merged via anew.
-
-**phase5_params**
-
-Parameter and API surface discovery. `paramspider_raw.txt` is sourced from the Wayback Machine (passive). `arjun_raw.txt` is the result of active hidden parameter discovery. `params_merged.txt` unifies all GET parameters. `api_endpoints.txt` is the kiterunner API route brute force output against assetnote route datasets. `wellknown_findings.txt` covers probed `/.well-known/` paths: openid-configuration, security.txt, assetlinks.json, change-password, mta-sts.txt. `openapi_specs/` holds any swagger or openapi schema dumps found at common paths. `graphql_schema.json` is the result of a GraphQL introspection query when applicable. `js_post_params.txt` contains server-side URL patterns extracted by grepping the JS cache for fetch/axios POST calls with url-shaped body parameters and verbs such as proxy, import, render, webhook, and screenshot (i like to look for SSRF so i use this frontend resource code like that). The `interesting/` subdirectory holds gf pattern matches pre-filtered by vulnerability class for manual review.
-
-**feature_map.md**
-
-The goal is to understand the application products and behaviour. Built manually at the second checkpoint. Maps application features: auth flows, user roles, file uploads, redirects, payment logic, URL-consuming endpoints. Defines the threat model for the target —> what is the worst that could happen to this organization? — and redirects phase 6 effort accordingly.
-
-**findings/**
-
-One subdirectory per vulnerability class. Each confirmed finding lives here with request/response evidence and impact notes.
+**Skip**: black-box autonomous "find me bugs" agents, generic LLM XSS scanning, any "agentic continuous AI pentesting" SaaS without disclosed deterministic-validator architecture, HackerOne Hai for hunters (it's primarily a triager-side product).
 
 ---
 
 ## kali docker
 
-The hacking environment i use runs inside a Kali Linux container. This is good for using clouds as infrastructure and fuzzing with clusters
+Kali Linux container. Good for using clouds as infrastructure and fuzzing with clusters. Container does NOT run JXScout — that daemon runs on the host alongside Caido.
 
 **setup**
 
@@ -133,3 +181,5 @@ chmod +x run.sh
 ```bash
 docker start kali && docker attach kali
 ```
+
+See `kali-docker/tools` for the current required tool list.

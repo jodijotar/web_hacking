@@ -1,19 +1,40 @@
-smap
-altdns
-dnsgen
-massdns
-dnsx
-asnmap
-naabu
-gowtiness
-gau
-bbot
-anti-burl
-paramspider
-arjun
-unfurl
-gf
-kiterunner
-subfinder
-anew
+## CORE — required ##
+bbscope             # phase 0: pull Bugcrowd in-scope assets
+subfinder           # phase 1: passive subdomain enum
+trufflehog          # phase 1: GitHub + Postman secret hunting
+smap                # phase 1: passive shodan-backed scan
+puredns             # phase 2: wildcard-aware resolution
+massdns             # phase 2: puredns dependency
+alterx              # phase 2: subdomain permutations (replaces altdns/dnsgen)
+dnsx                # phase 2: PTR/CNAME enrichment
+asnmap              # phase 2.1: ASN -> CIDR (only if IP scope present)
+naabu               # phase 2.1: port scan (only if IP scope present)
+httpx               # phase 3: host probing with tech-detect
+gowitness           # phase 3: screenshot grid for manual triage
+gau                 # phase 4: historical URLs (replaces waybackurls + paramspider)
+anew                # phase 4/5: stream-friendly dedup
+unfurl              # phase 5: extract params from URL list
+jsluice             # phase 4: AST-based JS endpoint extraction (replaces linkfinder)
+nuclei              # phase 5.5: tag-restricted misconfig sweep
+subzy               # phase 5.5: subdomain takeover detection
+cloud_enum          # phase 5.5: AWS/Azure/GCS bucket enumeration
+arjun               # phase 5: optional, hidden param discovery on top priority host
 
+## JS PIPELINE ##
+# JXScout daemon runs OUTSIDE the container, with jxscout-caido plugin in Caido
+# Cached bundles in ~/.jxscout/<target>/ are then read by jsluice + grep regex
+
+## OPTIONAL ##
+gungnir             # CT log subscription for long engagements
+graphw00f           # GraphQL engine fingerprinting (only when GQL endpoint found)
+gf                  # vuln-pattern grep over URL lists (light usage)
+
+## REMOVED FROM PREVIOUS LIST — DO NOT REINSTALL ##
+# waybackurls       — gau supersedes
+# paramspider       — gau + unfurl supersedes
+# altdns            — obsolete, alterx replaces
+# dnsgen            — superseded by alterx -enrich
+# linkfinder        — jsluice replaces (AST > regex)
+# kiterunner        — leaked openapi/swagger > kr's API wordlist for BAC focus
+# bbot              — pick one mode: bbot recursive OR piecemeal tools, not both
+# anti-burl         — pipeline doesn't need it after jsluice
