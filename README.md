@@ -1,10 +1,6 @@
 # web_hacking
 
-Personal reconnaissance + vulnerability assessment framework for **Bugcrowd public BBPs**, focused on **broken access control, IDOR, server misconfigurations, and SSRF**.
-
 Linear, phased pipeline where each stage consumes the previous stage's output directly. **Intentionally semi-automated** — chaining outputs manually surfaces infrastructure insights and BAC opportunities that fully automated pipelines miss.
-
-Tools are deliberately minimized. Any tool that can't be drawn in two steps from "tool runs" to "manually-inspectable artifact pointing at a BAC-class bug" is excluded. See `obsidian/notes_archive/bb-workflow refact.md` for the full reasoning on each tooling decision.
 
 For the full dataflow notes and per-phase commands, open `/obsidian/dataflow_recon/` in Obsidian.
 
