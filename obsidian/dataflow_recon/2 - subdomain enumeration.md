@@ -1,6 +1,6 @@
 #phase
 
-DNS-track host discovery. altdns + dnsgen replaced by alterx; massdns/dnsx wrapped by puredns for proper wildcard handling
+DNS-track host discovery
 
 merge passive sources
 	`cat subdomains_raw.txt cloud_hosts.txt censys_hosts.txt sonar_rdns.txt 2>/dev/null | sort -u > subdomains_merged.txt`
@@ -19,11 +19,6 @@ dnsx enrichment (optional, only for IP-track pivot)
 
 cleaning out of scope before surface mapping:
 	`grep -vFf out_of_scope.txt subdomains_resolved.txt | sponge subdomains_resolved.txt`
-
--- removed from previous workflow:
-	altdns (obsolete, hardcoded patterns)
-	dnsgen (superseded by alterx -enrich)
-	gobuster dns + vhost (puredns covers bruteforce; vhost rarely needed on modern targets)
 
 -- input:
 	scope.txt

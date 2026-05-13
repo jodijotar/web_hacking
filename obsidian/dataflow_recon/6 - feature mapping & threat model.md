@@ -1,8 +1,4 @@
-#checkpoint #phase
-
-renamed from checkpoint to a proper phase. this and phase 3.5 are the two phases that actually find bugs — recon just puts you in front of the surface where they live
-
-≥30 minutes inside the product as each role, in each tenant. Douglas Day discipline: "100% manual, just me and Burp". top-50 H1 hunter, no recon stack
+#checkpoint #phase 
 
 document for each feature:
 	endpoint hit (URL, method, params)

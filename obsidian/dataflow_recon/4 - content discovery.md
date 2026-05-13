@@ -4,7 +4,7 @@ URL and content discovery. SPA-aware: directory bruteforce removed, JS bundle an
 
 gau (passive, historical)
 	`cat priority_hosts.txt | gau --threads 50 --subs | anew historical_urls.txt`
-	covers Wayback + AlienVault OTX + Common Crawl + URLScan in one call. supersedes waybackurls + paramspider entirely
+	covers Wayback + AlienVault OTX + Common Crawl + URLScan in one call. 
 	high-value patterns to grep from this output:
 		leaked tokens in URLs (`?token=`, `?reset=`, `?invite=`)
 		old API versions still routable (`/api/v1/...` when current is v3)
@@ -31,14 +31,6 @@ js-snitch (optional, fast)
 
 merge into single source of truth
 	`cat historical_urls.txt js_endpoints.txt | anew all_urls.txt`
-
--- removed from previous workflow:
-	waybackurls (gau covers it)
-	bbot spider (overlaps gau on passive; SPAs aren't crawlable on active)
-	linkfinder (JSluice replaces it — AST > regex)
-	ffuf directory bruteforce (modern SaaS surface lives in JS, not at /admin /backup.zip)
-	katana (SPA crawler returns the static index page; JXScout actually reaches the routes)
-	manual js_cache + md5 + xargs curl pipeline (JXScout does this automatically + better)
 
 -- input:
 	priority_hosts.txt

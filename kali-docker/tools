@@ -28,13 +28,3 @@ arjun               # phase 5: optional, hidden param discovery on top priority 
 gungnir             # CT log subscription for long engagements
 graphw00f           # GraphQL engine fingerprinting (only when GQL endpoint found)
 gf                  # vuln-pattern grep over URL lists (light usage)
-
-## REMOVED FROM PREVIOUS LIST — DO NOT REINSTALL ##
-# waybackurls       — gau supersedes
-# paramspider       — gau + unfurl supersedes
-# altdns            — obsolete, alterx replaces
-# dnsgen            — superseded by alterx -enrich
-# linkfinder        — jsluice replaces (AST > regex)
-# kiterunner        — leaked openapi/swagger > kr's API wordlist for BAC focus
-# bbot              — pick one mode: bbot recursive OR piecemeal tools, not both
-# anti-burl         — pipeline doesn't need it after jsluice

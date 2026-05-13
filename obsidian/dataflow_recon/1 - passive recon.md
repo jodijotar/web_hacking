@@ -35,10 +35,6 @@ censys / shodan
 project sonar RDNS (optional)
 	useful only when ASNs/IP ranges are in scope. cross-reference RDNS dataset against `ip_ranges.txt` to surface hosts removed from DNS but still live
 
--- removed from previous workflow:
-	noseyparker (redundant with trufflehog when no local repo clone)
-	gitdorker / gitrob (effectively superseded by trufflehog github with comments/wikis flags)
-
 -- input:
 	scope.txt
 	asns.txt (optional)

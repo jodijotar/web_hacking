@@ -2,9 +2,6 @@
 
 NEW PHASE. converts P3/P4 findings into P1/P2 by chaining. before reporting any finding, match against this catalog and hunt the chain partner
 
-chain pattern catalog
-	each entry: low-impact bug + chain partner -> elevated impact
-
 subdomain takeover -> cookie scoping -> session hijack
 	prereqs: subdomain in scope, cookie not host-only (`Domain=.target.com`)
 	test: host JS on taken-over subdomain that reads document.cookie; victim visit -> SSO cookie exfil
@@ -15,7 +12,7 @@ open redirect -> OAuth token theft
 	test: chain open redirect URL into OAuth `redirect_uri` value to leak token via Referer
 	reference: HackerOne #202781 (Uber, $7,500)
 
-self-stored XSS + IDOR -> account takeover (the case you flagged)
+self-stored XSS + IDOR -> account takeover 
 	prereqs: self-XSS in profile/template/note field, authenticated write endpoint accepts userId/email/templateId without ownership check
 	test: write XSS payload, then via IDOR set victim's profile field to point at attacker payload, victim visits own profile -> ATO
 	reference: HackerEarth (Jefferson Gonzales), Codii (Hackerearth profile-XSS sandwich)

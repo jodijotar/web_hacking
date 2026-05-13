@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1 - passive recon.md",
+                "file": "findings.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "1 - passive recon"
+              "title": "findings"
             }
           }
         ]
@@ -78,7 +78,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "5c0470e1949658ce",
@@ -185,32 +186,32 @@
   },
   "active": "eb8df628f4e94a9b",
   "lastOpenFiles": [
-    "0 - scope definition.md",
-    "2 - subdomain enumeration.md",
-    "out_of_scope.txt.md",
-    "2.1 - network active scanning.md",
-    "1 - passive recon.md",
-    "scope.txt.md",
-    "interesting.md",
+    "arjun_raw.txt.md",
+    "findings.md",
+    "8 - chain hunt.md",
+    "7 - BAC IDOR assessment.md",
+    "bac_findings.md",
+    "6 - feature mapping & threat model.md",
+    "5.5 - misconfig sweep.md",
     "5 - parameter and api discovery.md",
+    "interesting.md",
+    "wellknown_findings.txt.md",
+    "js grep regex.md",
     "4 - content discovery.md",
+    "3.5 - authenticated recon.md",
     "checkpoint 1 - manual triage.md",
     "3 - surface mapping.md",
+    "2 - subdomain enumeration.md",
+    "permutations.txt.md",
+    "1 - passive recon.md",
+    "sonar_rdns.txt.md",
+    "0 - scope definition.md",
+    "out_of_scope.txt.md",
+    "2.1 - network active scanning.md",
+    "scope.txt.md",
     "6 - targeted vulnerability assessment.md",
     "checkpoint 2 - feature mapping & threat model.md",
     "Untitled",
-    "params_merged.txt.md",
-    "graphql_schema.json.md",
-    "openapi_specs.md",
-    "wellknow_findings.txt.md",
-    "js grep regex.md",
-    "all_urls.txt.md",
-    "screenshots.md",
-    "subdomains_raw.txt.md",
-    "subdomains_resolved.txt.md",
-    "permutations.txt.md",
-    "cloud_hosts.txt.md",
-    "sonar_rdns.txt.md",
-    "smap_results.txt.md"
+    "params_merged.txt.md"
   ]
 }
